@@ -1,0 +1,28 @@
+body {
+    background: #f4f7fb;
+    color: #263238;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.card {
+    border-radius: 16px;
+}
+
+.table-responsive {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+@media print {
+    body {
+        background: #fff;
+    }
+    .navbar, .btn, .form-control, .pagination, .card-header .btn {
+        display: none !important;
+    }
+    .table {
+        font-size: 12px;
+    }
+}
