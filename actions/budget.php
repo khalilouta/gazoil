@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../auth.php';
+requireLogin();
+
 require_once __DIR__ . '/../models/Budget.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

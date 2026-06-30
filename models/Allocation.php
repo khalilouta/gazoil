@@ -30,7 +30,7 @@ class Allocation
         self::ensureTable();
         $existing = self::getCurrentAllocation();
 
-        if ($existing && (int)$existing['year'] === (int)$year) {
+        if ($existing) {
             $stmt = pdo()->prepare('UPDATE budget_allocations SET amount = :amount, year = :year, updated_at = NOW() WHERE id = :id');
             return $stmt->execute(['id' => $existing['id'], 'amount' => $amount, 'year' => $year]);
         }

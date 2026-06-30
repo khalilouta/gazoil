@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Database configuration
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'gazoil_dashboard');
@@ -20,4 +24,27 @@ function pdo()
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
     }
     return $pdo;
+}
+
+function isLoggedIn()
+{
+    return !empty($_SESSION['auth_user']);
+}
+
+function requireLogin()
+{
+    if (!isLoggedIn()) {
+        header('Location: ' . BASE_URL . 'login.php');
+        exit;
+    }
+}
+
+function requireLoginJson()
+{
+    if (!isLoggedIn()) {
+        header('Content-Type: application/json');
+        http_response_code(401);
+        echo json_encode(['error' => 'Unauthorized']);
+        exit;
+    }
 }

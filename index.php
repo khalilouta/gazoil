@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/auth.php';
+requireLogin();
+
 require_once __DIR__ . '/models/Budget.php';
 require_once __DIR__ . '/models/FuelBon.php';
 require_once __DIR__ . '/models/Allocation.php';
@@ -48,6 +51,7 @@ function formatMoney($value)
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="logout.php">Déconnexion</a></li>
             </ul>
         </div>
     </div>
@@ -297,8 +301,8 @@ function formatMoney($value)
                         <input type="number" step="0.01" name="amount" class="form-control" value="<?= $allocation ? htmlspecialchars($allocation['amount']) : '' ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Année</label>
-                        <input type="number" name="year" class="form-control" min="2024" value="<?= $allocation ? htmlspecialchars($allocation['year']) : date('Y') ?>" required>
+                        <label class="form-label">Année manuelle</label>
+                        <input type="number" name="year" class="form-control" min="2024" placeholder="Ex: 2026" value="<?= $allocation ? htmlspecialchars($allocation['year']) : '' ?>" required>
                     </div>
                 </div>
                 <div class="modal-footer">
